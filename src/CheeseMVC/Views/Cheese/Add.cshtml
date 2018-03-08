@@ -1,4 +1,5 @@
 ﻿@model CheeseMVC.ViewModels.AddCheeseViewModel
+@using CheeseMVC.Models
 
 <h1>Add Cheese</h1>
 
@@ -14,12 +15,13 @@
         <input class="form-control" asp-for="Description" />
         <span asp-validation-for="Description"></span>
     </div>
-
     <div class="form-group">
-        <label asp-for="Type"></label>
-        <select asp-for="Type" asp-items="Model.CheeseTypes"></select>
+        <select asp-for="CategoryID">
+            @foreach (SelectListItem category in Model.Categories)
+            {
+                <option value="@category.Value">@category.Text</option>
+            }
+        </select>
     </div>
-
-    <input type="submit" value="Add Cheese" />
-
-</form>
+        <input type="submit" value="Add Cheese" />
+    </form>
